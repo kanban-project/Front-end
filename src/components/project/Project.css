@@ -1,0 +1,30 @@
+.Project{
+    background-color: white;
+    width: 40%;
+    display: block;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    text-overflow: ellipsis;
+    padding: 0 20px;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3), 0 5px 12px rgba(133, 133, 133, 0.22);
+}
+
+.Project__userid{
+    font-size: 18px;
+    padding-bottom: 15px;
+    color: rgb(22, 28, 32);
+}
+
+.Project__description{
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    color: slategrey;
+    overflow: hidden;
+}
+
+.Project h1{
+    font-size: 30px;
+    font-weight: 600;
+}
