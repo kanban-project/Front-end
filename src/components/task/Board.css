@@ -1,0 +1,8 @@
+.Board {
+    padding:50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+  
