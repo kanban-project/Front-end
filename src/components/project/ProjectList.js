@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import Project from "./Project";
-
  
 export default class ProjectList extends Component {
 

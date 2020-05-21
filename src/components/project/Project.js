@@ -1,10 +1,12 @@
 import React from "react";
 import './Project.css';
 import LinesEllipsis from 'react-lines-ellipsis';
+import {Link} from "react-router-dom";
 
 function Project({id, title, description, user_id}){
     return (
         <div className="Project">
+            <Link to={`/board/${id}`}>
             <div className="Project__title">
                 <h1>{title}</h1>
             </div>
@@ -20,6 +22,7 @@ function Project({id, title, description, user_id}){
                     basedOn='letters'
                     />
             </div>
+            </Link>
         </div>
     )
 }
