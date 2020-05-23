@@ -1,19 +1,17 @@
 import React from "react";
-import './Project.css';
+import './Task.css';
 import LinesEllipsis from 'react-lines-ellipsis';
-import {Link} from "react-router-dom";
 
-function Project({id, title, description, user_id}){
+function Task({id, title, description, user_id}){
     return (
-        <div className="Project">
-            <Link to={`/board/${id}`}>
-            <div className="Project__title">
+        <div className="Task">
+            <div className="Task__title">
                 <h1>{title}</h1>
             </div>
-            <div className="Project__userid">
+            <div className="Task__userid">
                 작성자 : {user_id}
             </div>
-            <div className="Project__description">
+            <div className="Task__description">
                 <LinesEllipsis
                     text={description}
                     maxLine='2'
@@ -22,9 +20,8 @@ function Project({id, title, description, user_id}){
                     basedOn='letters'
                     />
             </div>
-            </Link>
         </div>
     )
 }
 
-export default Project;
+export default Task;
