@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import Project from "./Project";
+import Header from "./Header";
  
 export default class ProjectList extends Component {
 
@@ -36,7 +37,8 @@ export default class ProjectList extends Component {
     render() {
         return (
           <div className="ProjectList">
-              {this._renderProjects()}
+            <Header />
+            {this._renderProjects()}
           </div> 
         );
     }
