@@ -4,17 +4,15 @@ import axios from "axios";
 
 
 const OXButton = (props) => {
-  const {modal, setModal, projectName, projectDesc, setProjectName, setProjectDesc} = props;
+  const {modal, setModal, userId, userPassword} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://101.101.211.195:8000/api/project/",
+      axios.post("http://172.30.1.3:6006/project",
         {
-          'title' : projectName,
-          'description' : projectDesc
+            userId,
+            userPassword
         }).then(() => {
           setModal(!modal);
-          setProjectName("");
-          setProjectDesc("");
       });
     } catch (error) {
       if (!axios.isCancel(error)) {
@@ -29,9 +27,9 @@ const OXButton = (props) => {
 
   return (
     <>
-      <Button type="submit" color="primary" onClick={onClickEnter}>OK</Button>
+      <Button type="submit" color="primary" onClick={onClickEnter}>가입</Button>
       {" "}
-      <Button color="secondary" onClick={onClickLeave}>Cancel</Button>
+      <Button color="secondary" onClick={onClickLeave}>취소</Button>
     </>
   );
 };
