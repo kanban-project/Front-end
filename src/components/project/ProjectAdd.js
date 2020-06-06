@@ -3,8 +3,9 @@ import {Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody, Mo
 import OXButton from "./OXButton";
 
 
-const ProjectAdd = () => {
+const ProjectAdd = (props) => {
 
+  const {isUpdate} = props;
   const [modal, setModal] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [projectDesc, setProjectDesc] = useState("");
@@ -37,7 +38,7 @@ const ProjectAdd = () => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <OXButton modal={modal} setModal={setModal} projectName={projectName} setProjectName={setProjectName} projectDesc={projectDesc} setProjectDesc={setProjectDesc} />
+          <OXButton isUpdate={isUpdate} modal={modal} setModal={setModal} projectName={projectName} setProjectName={setProjectName} projectDesc={projectDesc} setProjectDesc={setProjectDesc} />
         </ModalFooter>
       </Modal>
     </>

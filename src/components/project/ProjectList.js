@@ -1,50 +1,62 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import axios from "axios";
-import Project from "./Project";
+import ProjectItem from "./ProjectItem";
 import Header from "./Header";
 
-const ProjectList = () => {
+export default class ProjectList extends Component {
 
-    const state = {
+     state = {
         projects: [],
+        update: false
     };
 
-    const [projectAPI, setProjectAPI] = useState(state);
+    _isUpdate = () => {
+        this.setState({update:true});
+        this.setState({update:false});
+    }
 
-    useEffect(() => {
-        const _callApi = async () => {
-            try{ 
-            await axios.get('http://101.101.211.195:8000/api/project/')
-            .then(response => {
+    _getProject = async () => {
+        try{ 
+            await 
+                axios.get('http://101.101.211.195:8000/api/project/')
+                .then(response => {
                 console.log(response.data);
-                setProjectAPI({projects : response.data});
+                this.setState({projects : response.data});
                 });
-            } catch (error) {
-                if (!axios.isCancel(error)) {
-                throw error;
-              }
-            } 
-        };
-        _callApi();
-        }
-      );
+        } catch (error) {
+            if (!axios.isCancel(error)) {
+            throw error;
+          }
+        } 
+    };
 
-    const _renderProjects = () => {
-        const projects = projectAPI.projects.map(project => {
-            return <Project 
+    componentDidMount() {
+        this._getProject();
+    }
+
+    componentDidUpdate() {
+        if(this.state.update){
+            this._getProject();
+        }
+    }
+      
+    _renderProjects = () => {
+        const projects = this.state.projects.map(project => {
+            return <ProjectItem
+            isUpdate={this._isUpdate} 
             id={project.id} 
             title={project.title} 
             description={project.description} />
         })
         return projects
     }
- 
-    return (
-        <div className="ProjectList">
-        <Header />
-        {_renderProjects()}
-        </div> 
-    );  
-};
 
-export default ProjectList;
+    render () {
+        return (
+            <div className="ProjectList">
+            <Header isUpdate={this._isUpdate}/>
+            {this._renderProjects()}
+            </div> 
+        );  
+   };
+};
