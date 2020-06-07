@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ProjectList from "./components/project/ProjectList";
+import Login from "./components/main/Login";
 import Board from "./components/task/Board";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import './App.css';
 
 class App extends Component {
@@ -9,9 +10,12 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Route exact path="/" component={ProjectList}></Route>
-          <Route path="/project" component={ProjectList}></Route>
-          <Route path="/board/:id"><Board/></Route>
+          <Switch>
+            <Route exact path="/" component={Login}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/project" component={ProjectList}/>
+            <Route path="/board/:id"><Board/></Route>
+          </Switch>
         </BrowserRouter>
       </div> 
     );

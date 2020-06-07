@@ -1,45 +1,62 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import axios from "axios";
-import Project from "./Project";
+import ProjectItem from "./ProjectItem";
 import Header from "./Header";
- 
+
 export default class ProjectList extends Component {
 
-    state = {
+     state = {
         projects: [],
+        update: false
+    };
+
+    _isUpdate = () => {
+        this.setState({update:true});
+        this.setState({update:false});
+    }
+
+    _getProject = async () => {
+        try{ 
+            await 
+                axios.get('http://101.101.211.195:8000/api/project/')
+                .then(response => {
+                console.log(response.data);
+                this.setState({projects : response.data});
+                });
+        } catch (error) {
+            if (!axios.isCancel(error)) {
+            throw error;
+          }
+        } 
     };
 
     componentDidMount() {
-        this._getProjects();
+        this._getProject();
     }
 
-    _callApi = () => {
-        return axios.get('http://172.30.1.3:6006/project')
-        .then(res => res.data)
+    componentDidUpdate() {
+        if(this.state.update){
+            this._getProject();
+        }
     }
-
-    _getProjects = async () => {
-        const projects = await this._callApi();
-        this.setState({ projects : projects})
-    }
-
+      
     _renderProjects = () => {
         const projects = this.state.projects.map(project => {
-            return <Project 
+            return <ProjectItem
+            isUpdate={this._isUpdate} 
             id={project.id} 
             title={project.title} 
-            description={project.description} 
-            user_id={project.user_id} />
+            description={project.description} />
         })
         return projects
     }
 
-    render() {
+    render () {
         return (
-          <div className="ProjectList">
-            <Header />
+            <div className="ProjectList">
+            <Header isUpdate={this._isUpdate}/>
             {this._renderProjects()}
-          </div> 
-        );
-    }
-}
+            </div> 
+        );  
+   };
+};
