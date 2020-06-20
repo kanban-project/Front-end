@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import OXButton from "./OXButton";
+import SubmitButton from "./SubmitButton";
 
 
 const ProjectAdd = (props) => {
@@ -38,7 +38,7 @@ const ProjectAdd = (props) => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <OXButton isUpdate={isUpdate} modal={modal} setModal={setModal} projectName={projectName} setProjectName={setProjectName} projectDesc={projectDesc} setProjectDesc={setProjectDesc} />
+          <SubmitButton isUpdate={isUpdate} modal={modal} setModal={setModal} projectName={projectName} setProjectName={setProjectName} projectDesc={projectDesc} setProjectDesc={setProjectDesc} />
         </ModalFooter>
       </Modal>
     </>

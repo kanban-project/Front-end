@@ -2,6 +2,7 @@ import React, {useState, useEffect, Component} from 'react';
 import axios from "axios";
 import ProjectItem from "./ProjectItem";
 import Header from "./Header";
+import {Container, Jumbotron, Row, Col} from "reactstrap";
 
 export default class ProjectList extends Component {
 
@@ -18,7 +19,7 @@ export default class ProjectList extends Component {
     _getProject = async () => {
         try{ 
             await 
-                axios.get('http://101.101.211.195:8000/api/project/')
+                axios.get('http://172.30.1.3:8000/api/project/')
                 .then(response => {
                 console.log(response.data);
                 this.setState({projects : response.data});
@@ -55,7 +56,13 @@ export default class ProjectList extends Component {
         return (
             <div className="ProjectList">
             <Header isUpdate={this._isUpdate}/>
-            {this._renderProjects()}
+            <Container>
+                <Jumbotron>
+                    <Row xs="3" md="3" lg="3" className="mb-5">
+                        {this._renderProjects()}
+                    </Row>
+                </Jumbotron>
+            </Container>
             </div> 
         );  
    };

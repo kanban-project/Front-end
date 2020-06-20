@@ -19,30 +19,22 @@ const Login = () => {
   const IdChange = (e) => setuserId(e.target.value);
   const PasswordChange = (e) => setuserPassword(e.target.value);
 
-  const _callApi = () => {
+  const _checkLogin = () => {
      try {
        return( 
         axios.post("http://172.30.1.3:6006/user",
           {
             userId,
             userPassword
-          }).then(res => res.data));
+          }).then(() => {
+            history.push("/project");
+          }));
      }catch (error) {
       if (!axios.isCancel(error)) {
-        throw error;
+        alert("비밀번호, 혹은 아이디가 일치하지 않습니다")
+        setuserId("");
+        setuserPassword("")
       }
-    }
-  }
-
-  const checkLogin = async () => {
-    const isValid = await _callApi();
-    //setAuth(isValid);
-    if(auth === true){
-      history.push("/project");
-    }else{
-      alert("비밀번호, 혹은 아이디가 일치하지 않습니다")
-      setuserId("");
-      setuserPassword("")
     }
   }
 
@@ -71,7 +63,7 @@ const Login = () => {
             onChange={PasswordChange}
             />
         </div>
-        <Button color="primary" type="submit" onClick={checkLogin}>로그인</Button>
+        <Button color="primary" type="submit" onClick={_checkLogin}>로그인</Button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Button color="primary" onClick={modalToggle}>회원 가입</Button>
         <Modal isOpen={modal} toggle={modalToggle}>

@@ -3,11 +3,11 @@ import {Button} from "reactstrap";
 import axios from "axios";
 
 
-const OXButton = (props) => {
+const SubmitButton = (props) => {
   const {isUpdate, modal, setModal, projectName, projectDesc, setProjectName, setProjectDesc} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://101.101.211.195:8000/api/project/",
+      axios.post("http://172.30.1.3:8000/api/project/",
         {
           'title' : projectName,
           'description' : projectDesc
@@ -30,10 +30,11 @@ const OXButton = (props) => {
 
   return (
     <>
-      <Button type="submit" color="primary" onClick={onClickEnter}>OK</Button>
+      <Button type="submit" color="primary" onClick={onClickEnter}>확인</Button>
       {" "}
-      <Button color="secondary" onClick={onClickLeave}>Cancel</Button>
+      <Button color="secondary" onClick={onClickLeave}>취소</Button>
     </>
   );
 };
-export default OXButton;
+
+export default SubmitButton;
