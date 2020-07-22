@@ -13,7 +13,7 @@ export default class TaskList extends Component {
     }
     
     _callApi = () => {
-        return axios.get('http://101.101.211.195:8000/api/task/' + String(this.props.id))
+        return axios.get('localhost/api/task/' + String(this.props.id))
         .then(res => res.data)
     }
 
@@ -25,9 +25,13 @@ export default class TaskList extends Component {
     _renderTasks = () => {
         const tasks = this.state.tasks.map(task => {
             return <Task 
-            id={task.project_id} 
+            id={task.project_id}
+            due_date={task.due_date}
+            created_at={task.created_at}
             title={task.title} 
-            description={task.description} />
+            description={task.description}
+            status={task.status}
+            priority={task.priority} />
         })
         return tasks
     }

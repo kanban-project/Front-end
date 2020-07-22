@@ -45,4 +45,4 @@ export function Board({cards, columns, moveCard, addCard, addColumn}) {
       </div>
     );
   }
-  
+  export default Board;
