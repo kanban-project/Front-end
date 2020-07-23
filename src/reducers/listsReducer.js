@@ -1,15 +1,33 @@
 const initialState = [
     {
-        title: "Last Episode",
+        title: "첫번째 태스크",
         id: 0,
         cards: [
             {
                 id: 0,
-                text: "we created a static list and a static card"
+                text: "테스트1"
             },
             {
                 id: 1,
-                text: "we used a mix between material UI React and styled componets"
+                text: "테스트2"
+            }
+        ]
+    },
+    {
+        title: "두번째 태스크",
+        id: 0,
+        cards: [
+            {
+                id: 0,
+                text: "테스트3"
+            },
+            {
+                id: 1,
+                text: "테스트4"
+            },
+            {
+                id: 2,
+                text: "테스트5"
             }
         ]
     }

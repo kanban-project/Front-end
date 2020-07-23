@@ -20,13 +20,23 @@ class App extends Component {
             <Route path="/login" component={Login}></Route>
             <Route path="/project" component={ProjectList}/>
             <Route path="/board/:id"><Board/></Route>
-    <Route path="/TrelloList"> {lists.map(list => <TrelloList title={list.title} cards={list.cards} />)}</Route>
+    <Route path="/TrelloList">
+      <h2>Hello Kanban <div style={styles.listsContainer}> {lists.map(list => <TrelloList key={list.id} title={list.title} cards={list.cards} />)}</div></h2></Route>
           </Switch>
         </BrowserRouter>
       </div> 
     );
   }
 }
+
+const styles = {
+  listsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: 300,
+    marginRight: 8
+  }
+};
 
 const mapStateToProps = state => ({
   lists: state.lists
