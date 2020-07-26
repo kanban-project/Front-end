@@ -1,5 +1,8 @@
 import React from "react";
-import Icon from "@material-ui/icons"
+
+import TextArea from 'react-textarea-autosize';
+
+import Card from "@material-ui/core/Card";
 
 
 class TrelloActionButton extends React.Component {
@@ -11,7 +14,8 @@ class TrelloActionButton extends React.Component {
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
     return (
-        <div 
+        <div
+        onClick={this.openForm}
         style={{
             ...styles.openForButtonGroup,
             opacity: buttonTextOpacity,
@@ -19,7 +23,6 @@ class TrelloActionButton extends React.Component {
             backgroundColor: buttonTextBackground
             }}
             >
-          <Icon>add</Icon>
           <p>{buttonText}</p>
         </div>
     );
@@ -30,7 +33,21 @@ class TrelloActionButton extends React.Component {
     }
 
     renderForm = () => {
-        return <p>Hello</p>
+
+        const { list } = this.props;
+
+        const placeholder = list 
+        ? "ENter list title..." 
+        : "Enter a title for this card...";
+
+        const buttonTitle = list ? "Add list" : "Add card";
+        
+        return <div>
+            <Card>
+              <TextArea 
+                placeholder={placeholder} autoFocus/>
+            </Card>
+        </div>
     };
     
     render() {
