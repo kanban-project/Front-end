@@ -5,22 +5,28 @@ import Task from "./Task";
 export default class TaskList extends Component {
 
     state = {
-        tasks: [],
+        tasks: []
     };
     
     componentDidMount() {
         this._getTasks();
     }
     
-    _callApi = () => {
-        return axios.get('localhost/api/task/' + String(this.props.id))
-        .then(res => res.data)
-    }
 
     _getTasks = async () => {
-        const tasks = await this._callApi();
-        this.setState({ tasks : tasks})
-    }
+        try{ 
+            await 
+                axios.get('http://localhost:8000/api/task/project/' + String(this.props.project_id) + '/status/' + String(this.props.status_id))
+                .then(response => {
+                console.log(response.data);
+                this.setState({tasks : response.data});
+                });
+        } catch (error) {
+            if (!axios.isCancel(error)) {
+            throw error;
+          }
+        } 
+    };
 
     _renderTasks = () => {
         const tasks = this.state.tasks.map(task => {

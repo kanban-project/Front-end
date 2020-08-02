@@ -18,7 +18,7 @@ export default class ProjectList extends Component {
     _getProject = async () => {
         try{ 
             await 
-                axios.get('http://101.101.211.195:8000/api/project/')
+                axios.get('http://localhost:8000/api/project/')
                 .then(response => {
                 console.log(response.data);
                 this.setState({projects : response.data});

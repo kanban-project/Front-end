@@ -11,7 +11,7 @@ const ProjectItem = ({isUpdate, id, title, description}) => {
 
     const deleteProject = () => {
         try {
-          axios.delete("http://101.101.211.195:8000/api/project/"+String(id)+"/").then(() => {
+          axios.delete("http://localhost:8000/api/project/"+String(id)+"/").then(() => {
             alert("삭제되었습니다");
             isUpdate();
           });

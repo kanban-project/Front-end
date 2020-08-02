@@ -7,7 +7,7 @@ const OXButton = (props) => {
   const {isUpdate, modal, setModal, projectName, projectDesc, setProjectName, setProjectDesc} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://101.101.211.195:8000/api/project/",
+      axios.post("http://localhost:8000/api/project/",
         {
           'title' : projectName,
           'description' : projectDesc
