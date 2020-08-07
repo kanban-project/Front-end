@@ -2,17 +2,15 @@ import React from "react";
 import {Button} from "reactstrap";
 import axios from "axios";
 
+const DeleteButton = (props) => {
+  const {isUpdate, modal, setModal, id} = props;
 
-const OXButton = (props) => {
-  const {modal, setModal, userId, userPassword} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://localhost:6006/project",
-        {
-            userId,
-            userPassword
-        }).then(() => {
-          setModal(!modal);
+      axios.delete("http://localhost:8000/api/task/"+String(id)+"/").then(() => {
+        alert("삭제되었습니다");
+        isUpdate();
+        setModal(!modal);
       });
     } catch (error) {
       if (!axios.isCancel(error)) {
@@ -27,10 +25,10 @@ const OXButton = (props) => {
 
   return (
     <>
-      <Button type="submit" color="primary" onClick={onClickEnter}>가입</Button>
+      <Button type="submit" color="primary" onClick={onClickEnter}>확인</Button>
       {" "}
       <Button color="secondary" onClick={onClickLeave}>취소</Button>
     </>
   );
 };
-export default OXButton;
+export default DeleteButton;

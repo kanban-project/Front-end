@@ -2,6 +2,7 @@ import React, {useState, useEffect, Component} from 'react';
 import axios from "axios";
 import ProjectItem from "./ProjectItem";
 import Header from "./Header";
+import {Container, Jumbotron, Row, Col} from "reactstrap";
 
 export default class ProjectList extends Component {
 
@@ -55,7 +56,13 @@ export default class ProjectList extends Component {
         return (
             <div className="ProjectList">
             <Header isUpdate={this._isUpdate}/>
-            {this._renderProjects()}
+            <Container>
+                <Jumbotron>
+                    <Row xs="3" md="3" lg="3" className="mb-5">
+                        {this._renderProjects()}
+                    </Row>
+                </Jumbotron>
+            </Container>
             </div> 
         );  
    };
