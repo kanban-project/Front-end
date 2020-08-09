@@ -49,6 +49,7 @@ export default class TaskList extends Component {
         const tasks = this.state.tasks.map(task => {
             return <Task 
             task_id={task.id}
+            project_id={this.props.project_id}
             isUpdate={this._isUpdate}
             due_date={task.due_date}
             created_at={task.created_at}

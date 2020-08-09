@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Component} from 'react';
 import axios from "axios";
-import ProjectItem from "./ProjectItem";
+import Project from "./Project";
 import Header from "./Header";
 import {Container, Jumbotron, Row, Col} from "reactstrap";
 
@@ -43,7 +43,7 @@ export default class ProjectList extends Component {
       
     _renderProjects = () => {
         const projects = this.state.projects.map(project => {
-            return <ProjectItem
+            return <Project
             isUpdate={this._isUpdate} 
             id={project.id} 
             title={project.title} 
@@ -56,7 +56,7 @@ export default class ProjectList extends Component {
         return (
             <div className="ProjectList">
             <Header isUpdate={this._isUpdate}/>
-            <Container>
+            <Container style={{width: "1200px"}}>
                 <Jumbotron>
                     <Row xs="3" md="3" lg="3" className="mb-5">
                         {this._renderProjects()}

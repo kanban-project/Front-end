@@ -5,14 +5,14 @@ import {Card, CardBody, CardText, CardTitle, Col, Row, CardHeader, CardFooter} f
 import {Button, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import DeleteButton from "./DeleteButton";
 
-const ProjectItem = ({isUpdate, id, title, description}) => {
+const Project = ({isUpdate, id, title, description}) => {
 
     const [modal, setModal] = useState(false);
     const modalToggle = () => setModal(!modal);
 
     return (
         <Col xs="4" sm="4" md="4" lg="4">
-            <Card style={{backgroundColor: "#eaffe0"}} className="m-3 p-1">
+            <Card style={{backgroundColor: "#eaffe0", width: "300px"}} className="m-3 p-1">
                 <CardHeader style={{backgroundColor: "#ffffff", height: "60px"}} className="p-0 m-0" >
                     <CardTitle className="h-100 m-0">
                         <Row className="mt-auto mb-auto h-100">
@@ -56,4 +56,4 @@ const ProjectItem = ({isUpdate, id, title, description}) => {
     )
 }
 
-export default ProjectItem;
+export default Project;

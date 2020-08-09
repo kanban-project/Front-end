@@ -22,7 +22,7 @@ const Login = () => {
   const _checkLogin = () => {
      try {
        return( 
-        axios.post("http://172.30.1.3:6006/user",
+        axios.post("http://localhost:6006/api/user",
           {
             userId,
             userPassword
@@ -40,7 +40,12 @@ const Login = () => {
 
 
   return (
-    <div className="Login">
+    <div className="Login"
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
       <form className="myForm">
         <div className="form-group">
           <label htmlFor="idInput">아이디</label>
@@ -63,9 +68,9 @@ const Login = () => {
             onChange={PasswordChange}
             />
         </div>
-        <Button color="primary" type="submit" onClick={_checkLogin}>로그인</Button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button color="primary" onClick={modalToggle}>회원 가입</Button>
+        <hr/>
+        <Button color="primary" type="submit" className="loginButton" onClick={_checkLogin}>로그인</Button>
+        <Button color="primary" onClick={modalToggle} className="signupButton">회원 가입</Button>
         <Modal isOpen={modal} toggle={modalToggle}>
           <ModalHeader toggle={modalToggle}>회원 가입</ModalHeader>
           <ModalBody>
