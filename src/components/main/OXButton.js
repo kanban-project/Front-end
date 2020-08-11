@@ -7,7 +7,7 @@ const OXButton = (props) => {
   const {modal, setModal, userId, userPassword} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://172.30.1.3:6006/project",
+      axios.post("http://localhost:6006/project",
         {
             userId,
             userPassword

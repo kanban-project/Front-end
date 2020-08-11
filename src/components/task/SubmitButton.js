@@ -4,17 +4,22 @@ import axios from "axios";
 
 
 const SubmitButton = (props) => {
-  const {isUpdate, modal, setModal, projectName, projectDesc, setProjectName, setProjectDesc} = props;
+  const {isUpdate, prior, status, projectId, modal, setModal, taskName, taskDate, taskDesc, setTaskName, setTaskDate, setTaskDesc} = props;
   const onClickEnter = () => {
     try {
-      axios.post("http://localhost:8000/api/project/",
+      axios.post("http://localhost:8000/api/task/",
         {
-          'title' : projectName,
-          'description' : projectDesc
+          'title' : taskName,
+          'description' : taskDesc,
+          'due_date' : taskDate,
+          'priority' : prior,
+          'status' : status,
+          'project_id' : projectId
         }).then(() => {
           setModal(!modal);
-          setProjectName("");
-          setProjectDesc("");
+          setTaskName("");
+          setTaskDesc("");
+          setTaskDate("");
           isUpdate();
       });
     } catch (error) {

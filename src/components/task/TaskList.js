@@ -1,42 +1,73 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import Task from "./Task";
- 
+import {Container, Jumbotron, Row, Col} from "reactstrap";
+import {Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import './Task.css';
+import StatusBadge from './StatusBadge';
+import TaskAdd from './TaskAdd';
+
 export default class TaskList extends Component {
 
     state = {
         tasks: [],
+        update: false
     };
-    
+
+    _isUpdate = () => {
+        this.setState({update:true});
+        this.setState({update:false});
+    }
+
+
     componentDidMount() {
         this._getTasks();
     }
-    
-    _callApi = () => {
-        return axios.get('http://101.101.211.195:8000/api/task/' + String(this.props.id))
-        .then(res => res.data)
-    }
 
-    _getTasks = async () => {
-        const tasks = await this._callApi();
-        this.setState({ tasks : tasks})
+    componentDidUpdate() {
+        if(this.state.update){
+            this._getTasks();
+        }
     }
+    
+    _getTasks = async () => {
+        try{ 
+            await 
+                axios.get('http://localhost:8000/api/task/project/' + String(this.props.project_id) + '/status/' + String(this.props.status_id))
+                .then(response => {
+                console.log(response.data);
+                this.setState({tasks : response.data});
+                });
+        } catch (error) {
+            if (!axios.isCancel(error)) {
+            throw error;
+          }
+        } 
+    };
 
     _renderTasks = () => {
         const tasks = this.state.tasks.map(task => {
             return <Task 
-            id={task.project_id} 
+            task_id={task.id}
+            project_id={this.props.project_id}
+            isUpdate={this._isUpdate}
+            due_date={task.due_date}
+            created_at={task.created_at}
             title={task.title} 
-            description={task.description} />
+            description={task.description}
+            status={task.status}
+            priority={task.priority} />
         })
         return tasks
     }
 
     render() {
         return (
-          <div className="TaskList">
-              {this._renderTasks()}
-          </div> 
+            <>
+                <StatusBadge statusName={this.props.status}/>
+                {this._renderTasks()}
+                <TaskAdd isUpdate={this._isUpdate} prior={1} status={this.props.status_id} projectId={this.props.project_id}/>
+            </>
         );
     }
 }
